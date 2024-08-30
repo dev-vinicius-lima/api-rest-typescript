@@ -4,15 +4,19 @@ import * as yup from "yup";
 
 interface ICidade {
   name: string;
+  state: string;
 }
 const bodyValidation: yup.ObjectSchema<ICidade> = yup.object().shape({
   name: yup.string().required().min(3),
+  state: yup.string().required().min(3),
 });
 
 export const create = async (req: Request<{}, {}, ICidade>, res: Response) => {
   let validateData: ICidade;
   try {
-    validateData = await bodyValidation.validate(req.body);
+    validateData = await bodyValidation.validate(req.body, {
+      abortEarly: false,
+    });
     return res.status(StatusCodes.CREATED).send(validateData);
   } catch (error) {
     if (error instanceof yup.ValidationError) {
