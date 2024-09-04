@@ -150,7 +150,7 @@ const config: Config = {
   // testLocationInResults: false,
 
   // The glob patterns Jest uses to detect test files
-  testMatch: ["<rootDir>/tests/**/*.jest.ts"],
+  testMatch: ["<rootDir>/tests/**/*.test.ts"],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
   // testPathIgnorePatterns: [
@@ -168,7 +168,7 @@ const config: Config = {
 
   // A map from regular expressions to paths to transformers
   transform: {
-    "^.+\\.(ts|jsx)$": '["ts-jest"]',
+    "^.+\\.(ts|jsx)$": "ts-jest",
   },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
