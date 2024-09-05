@@ -5,7 +5,7 @@ import { validation } from "../../shared/middlewares";
 import { StatusCodes } from "http-status-codes";
 
 interface IParamsProps {
-  id?: number;
+  id: number;
 }
 export const getByIdValidation = validation((getSchema) => ({
   params: getSchema<IParamsProps>(
@@ -19,7 +19,13 @@ export const getById = async (
   req: Request<{}, {}, {}, IParamsProps>,
   res: Response
 ) => {
-  console.log(req.params);
+  const { id } = req.params as IParamsProps;
+  if (Number(id) === 999999)
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      errors: {
+        default: "O registro não foi encontrado!",
+      },
+    });
 
   return res
     .status(StatusCodes.INTERNAL_SERVER_ERROR)

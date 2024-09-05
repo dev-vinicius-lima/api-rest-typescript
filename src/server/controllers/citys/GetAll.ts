@@ -26,5 +26,11 @@ export const getAll = async (
 ) => {
   console.log(req.query);
 
-  return res.status(StatusCodes.OK).send("Não implementado!");
+  return res.status(StatusCodes.OK).json([
+    {
+      id: 1,
+      name: "São Paulo",
+      state: "SP",
+    },
+  ]);
 };
